@@ -284,7 +284,7 @@ module ASIN
       hmac = OpenSSL::HMAC.digest(DIGEST, Configuration.secret, request_to_sign)
 
       # don't forget to remove the newline from base64
-      signature = CGI.escape(Base64.encode64(hmac).chomp)
+      signature = URI.escape(Base64.encode64(hmac).chomp)
       "#{query}&Signature=#{signature}"
     end
 
